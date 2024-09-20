@@ -230,7 +230,7 @@ To change the MAC address of an interface, issue the command:
 
 `-macspoof -source <SOURCE MAC> -iface <INTERFACE>`
 
-![macspoof](#https://user-images.githubusercontent.com/61552222/139445629-9f10ad95-6dbb-4b7f-b0d5-93f9959e52c2.png)
+
 
 As you can see in the screenshot below, the MAC address of the interface was succesfully changed.
 
