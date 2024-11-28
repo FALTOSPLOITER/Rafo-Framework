@@ -352,7 +352,7 @@ As you can see in the screenshot below, the interface mode was succesfully chang
 
 ## Contribution
 
-Create a issue or pull request, or send me an email at [jinsploiter404@gmail.com](mailto:jinsploiter404@gmail.com).
+Create a issue or pull request, or send me an email at [faltosploiter@gmail.com](mailto:faltosploiter@gmail.com).
 ## License
 
 This repository is under the [**MIT License**](https://opensource.org/licenses/MIT).
