@@ -54,5 +54,5 @@ sudo pip3 install netfilterqueue
 # Add main .py file to the system path (later)
 #cp *.py /usr/bin
 #cp methods/*.py /usr/bin
-#mv /usr/bin/Rafo.py /usr/bin/Rafo
-#chmod 755 /usr/bin/Rafo
+#mv /usr/bin/hawk.py /usr/bin/hawk
+#chmod 755 /usr/bin/hawk
