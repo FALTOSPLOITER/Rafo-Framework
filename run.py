@@ -28,7 +28,7 @@ from tasks.ifacemode import turn_monitor, turn_managed
 from tasks.save import save
 from autoscan import *
  
-ap = argparse.ArgumentParser(description='Rafo', formatter_class=argparse.RawDescriptionHelpFormatter,
+ap = argparse.ArgumentParser(description='Hawk', formatter_class=argparse.RawDescriptionHelpFormatter,
 epilog=textwrap.dedent('''
 
 Examples:
