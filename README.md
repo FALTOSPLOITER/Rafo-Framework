@@ -20,7 +20,7 @@ Currently, this script can perform a variety of tasks such as **ifconfig**, **pi
 
 Other features are still being implemented. Future implementations may include WAF detection, DNS enumeration, traffic analysis, XSS vulnerability scanner, ARP cache poisoning, DNS cache poisoning, MAC flooding, ping of death, network disassociation attack (not deauth attack), OSINT, email spoofing, exploits, some automated tasks and others.
 
-![welcome banner rafo](https://github.com/user-attachments/assets/fe314585-d9be-4c68-a3b9-7eabd9adc9c1)
+![welcome banner rafo]()
 
 ## Contents
 
