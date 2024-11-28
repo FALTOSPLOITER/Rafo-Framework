@@ -1,19 +1,6 @@
 
 # Rafo
 
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-![Size](https://img.shields.io/github/repo-size/medpaf/Rafo)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-
-<p align="center">
-  <br>
-  <img src="htt" />
-  <br>
-  <br>
-</p>
-
-
 Rafo is a network and pentest utility that I developed so that I could perform different kinds of tasks using the same suite, instead of jumping from one tool to another.
 
 Currently, this script can perform a variety of tasks such as **ifconfig**, **ping**, **traceroute**, **port scans** (including SYN, TCP, UDP, ACK, comprehensive scan, **host discovery** (scan for up devices on a local network), **MAC address detection** (get MAC address of a host IP on a local network), **banner grabbing**, **DNS checks** (with geolocation information), **WHOIS**, **subdomain enumeration**, **vulnerability reconnaissance**, **packet sniffing**, **MAC spoofing**, **IP spoofing**, **SYN flooding**, **deauth attack** and **brute-force attack** (beta).
