@@ -152,4 +152,4 @@ ap.add_argument('-user', '-usr', type = str,
         help = 'specify username')
 ap.add_argument('-wordlist', '-wl', type = str,
         nargs = 1,
-        help = 'specify wordlist
+        help = 'specify wordlist')
