@@ -16,11 +16,9 @@ def handleCommands():
     while True:
         try:
             comm = input(f'\nRafo > ')
-            if comm != 'history':
-                hist_list.append(comm.strip())
-            elif comm.strip() == 'clear':
+            if comm.strip() == 'clear':
                 subprocess.call("clear", shell=True)
-            if comm.strip() == 'history':
+            elif comm.strip() == 'history':
                 if len(hist_list) > 0:
                     print('Last commands:')
                     for i in range(0, len(hist_list)):
@@ -28,6 +26,7 @@ def handleCommands():
                 else:
                     print('No commands history.')
             else:
+                hist_list.append(comm.strip())
                 os.system(f'python3 run.py {comm}')
         except KeyboardInterrupt:
             sys.exit('\n^C\n')
