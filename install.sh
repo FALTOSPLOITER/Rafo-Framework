@@ -9,14 +9,23 @@ fi
 # Update package lists
 apt-get update
 
-# Install Python3 and pip if not already installed
-apt-get install -y python3 python3-pip
-
 # Install required system packages
-apt-get install -y nmap tcpdump net-tools
-
-# Install Python dependencies
-pip3 install -r requirements.txt
+apt-get install -y \
+    python3 \
+    python3-pip \
+    nmap \
+    tcpdump \
+    net-tools \
+    python3-colorama \
+    python3-scapy \
+    python3-nmap \
+    python3-requests \
+    python3-dnspython \
+    python3-whois \
+    python3-bs4 \
+    python3-paramiko \
+    python3-cryptography \
+    python3-ipinfo
 
 # Make the main script executable
 chmod +x Rafo.py
