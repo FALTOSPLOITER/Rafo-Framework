@@ -1,0 +1,9 @@
+colorama>=0.4.6
+scapy>=2.4.5
+python-nmap>=0.7.1
+requests>=2.28.1
+dnspython>=2.2.1
+python-whois>=0.8.0
+beautifulsoup4>=4.11.1
+paramiko>=2.11.0
+pycryptodome>=3.15.0 
