@@ -2,9 +2,32 @@ import os
 import subprocess
 import sys
 import readline
+from colorama import Fore, Back, Style
+
+# Check and activate virtual environment
+venv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'venv')
+if os.path.exists(venv_path):
+    if sys.platform == 'win32':
+        activate_script = os.path.join(venv_path, 'Scripts', 'activate')
+    else:
+        activate_script = os.path.join(venv_path, 'bin', 'activate')
+    
+    if os.path.exists(activate_script):
+        # Activate virtual environment
+        if sys.platform == 'win32':
+            os.system(f'call {activate_script}')
+        else:
+            os.system(f'source {activate_script}')
+    else:
+        print(f'{Fore.RED}Error: Virtual environment activation script not found.{Style.RESET_ALL}')
+        sys.exit(1)
+else:
+    print(f'{Fore.RED}Error: Virtual environment not found. Please run install.sh first.{Style.RESET_ALL}')
+    sys.exit(1)
+
+# Now import other modules after virtual environment is activated
 from run import *
 from welcome import welcome
-from colorama import Fore, Back, Style
 
 hist_list = []
 comm = ''
