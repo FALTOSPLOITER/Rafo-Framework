@@ -4,3 +4,8 @@ __pycache__/
 tasks/__pycache__/
 tasks/offense/__pycache__/
 venv/
+.env
+*.pyc
+files/__pycache__/
+plugins/__pycache__/
+~/.rafo/

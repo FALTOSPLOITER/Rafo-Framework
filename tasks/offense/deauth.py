@@ -50,7 +50,7 @@ def deauth(target_mac, gateway_mac, iface, default_iface = ''):
                     # Send the packet
                     sendp(packet, inter=inter, count=count, loop=loop, iface=iface, verbose=1) ###
                 except Exception as e:
-                    print(print(f'[{Fore.RED}!{Style.RESET_ALL}] Error: {Fore.RED}{e}{Style.RESET_ALL}'))
+                    print(f'[{Fore.RED}!{Style.RESET_ALL}] Error: {Fore.RED}{e}{Style.RESET_ALL}')
                 except KeyboardInterrupt:
                     sys.exit()
                     break
