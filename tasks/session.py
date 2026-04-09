@@ -108,7 +108,11 @@ def list_sessions():
         try:
             with open(os.path.join(sdir, fname)) as f:
                 s = json.load(f)
-            print(f'{s["session_id"]:<12} {(s.get("target") or ""):<30} {s["started_at"][:19]:<22} {(s.get("ended_at") or "active")[:19]:<22}')
+            sid = s['session_id']
+            tgt = (s.get('target') or '')[:29]
+            started = s['started_at'][:19]
+            ended = (s.get('ended_at') or 'active')[:19]
+            print(f'{sid:<12} {tgt:<30} {started:<22} {ended:<22}')
         except Exception:
             pass
     print()

@@ -1,8 +1,8 @@
-import os
-import sys
-import json
 import csv
+import json
 import subprocess
+import sys
+
 from colorama import Fore, Style
 
 
@@ -23,13 +23,13 @@ def save(cmd, filename, fmt='txt'):
         output = result.stdout
 
         if fmt == 'json':
-            lines = [l for l in output.splitlines() if l.strip()]
+            lines = [ln for ln in output.splitlines() if ln.strip()]
             data = {'command': cmd, 'output': lines}
             with open(filename, 'w') as f:
                 json.dump(data, f, indent=2)
 
         elif fmt == 'csv':
-            lines = [l for l in output.splitlines() if l.strip()]
+            lines = [ln for ln in output.splitlines() if ln.strip()]
             with open(filename, 'w', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(['line', 'output'])
@@ -41,7 +41,6 @@ def save(cmd, filename, fmt='txt'):
                 f.write(output)
 
     except Exception as e:
-        e = sys.exc_info()[1]
         print(f'[{Fore.RED}!{Style.RESET_ALL}] Error: {Fore.RED}{e}{Style.RESET_ALL}')
     else:
         print(f'[{Fore.GREEN}+{Style.RESET_ALL}] Successfully saved {Fore.GREEN}{filename}{Style.RESET_ALL} ({fmt.upper()} format).')
