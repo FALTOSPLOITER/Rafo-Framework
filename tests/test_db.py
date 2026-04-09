@@ -3,6 +3,7 @@
 import sys
 import os
 import pytest
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 
@@ -10,6 +11,7 @@ class TestRafoDB:
     @pytest.fixture
     def db(self, tmp_path):
         from files.db import RafoDB
+
         d = RafoDB(path=str(tmp_path / 'test.db'))
         yield d
         d.close()

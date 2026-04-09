@@ -16,10 +16,7 @@ def save(cmd, filename, fmt='txt'):
         fmt      : 'txt' | 'json' | 'csv'
     """
     try:
-        result = subprocess.run(
-            [sys.executable, 'run.py'] + cmd.strip().split(),
-            capture_output=True, text=True
-        )
+        result = subprocess.run([sys.executable, 'run.py'] + cmd.strip().split(), capture_output=True, text=True)
         output = result.stdout
 
         if fmt == 'json':
@@ -43,4 +40,7 @@ def save(cmd, filename, fmt='txt'):
     except Exception as e:
         print(f'[{Fore.RED}!{Style.RESET_ALL}] Error: {Fore.RED}{e}{Style.RESET_ALL}')
     else:
-        print(f'[{Fore.GREEN}+{Style.RESET_ALL}] Successfully saved {Fore.GREEN}{filename}{Style.RESET_ALL} ({fmt.upper()} format).')
+        print(
+            f'[{Fore.GREEN}+{Style.RESET_ALL}] Successfully saved '
+            f'{Fore.GREEN}{filename}{Style.RESET_ALL} ({fmt.upper()} format).'
+        )

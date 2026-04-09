@@ -13,11 +13,11 @@ CLI commands (used from the Rafo interactive shell):
     session export <session-id>
 """
 
-import os
-import sys
-import json
-import uuid
 import datetime
+import json
+import os
+import uuid
+
 from colorama import Fore, Style
 
 _SESSIONS_DIR = os.path.join(os.path.expanduser('~'), '.rafo', 'sessions')
@@ -33,13 +33,7 @@ def start_session(target=''):
     """Create a new session and set it as current."""
     session_id = str(uuid.uuid4())[:8]
     now = datetime.datetime.utcnow().isoformat()
-    data = {
-        'session_id': session_id,
-        'target': target,
-        'started_at': now,
-        'ended_at': None,
-        'commands': []
-    }
+    data = {'session_id': session_id, 'target': target, 'started_at': now, 'ended_at': None, 'commands': []}
     path = os.path.join(_sessions_dir(), f'{session_id}.json')
     with open(path, 'w') as f:
         json.dump(data, f, indent=2)
@@ -48,7 +42,10 @@ def start_session(target=''):
     with open(_CURRENT_SESSION_FILE, 'w') as f:
         json.dump({'session_id': session_id, 'path': path}, f)
 
-    print(f'[{Fore.GREEN}+{Style.RESET_ALL}] Session {Fore.GREEN}{session_id}{Style.RESET_ALL} started for target {Fore.YELLOW}{target or "(none)"}{Style.RESET_ALL}.')
+    print(
+        f'[{Fore.GREEN}+{Style.RESET_ALL}] Session {Fore.GREEN}{session_id}{Style.RESET_ALL} '
+        f'started for target {Fore.YELLOW}{target or "(none)"}{Style.RESET_ALL}.'
+    )
     return session_id
 
 
@@ -70,11 +67,9 @@ def log_command(command, output=''):
     session = get_current_session()
     if not session:
         return
-    session['commands'].append({
-        'command': command,
-        'output': output,
-        'timestamp': datetime.datetime.utcnow().isoformat()
-    })
+    session['commands'].append(
+        {'command': command, 'output': output, 'timestamp': datetime.datetime.utcnow().isoformat()}
+    )
     path = os.path.join(_sessions_dir(), f"{session['session_id']}.json")
     with open(path, 'w') as f:
         json.dump(session, f, indent=2)

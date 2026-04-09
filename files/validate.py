@@ -30,11 +30,7 @@ def validate_cidr(cidr):
 
 def validate_domain(domain):
     """Return True if domain looks like a valid hostname/domain."""
-    pattern = re.compile(
-        r'^(?:[a-zA-Z0-9]'
-        r'(?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)*'
-        r'[a-zA-Z]{2,}$'
-    )
+    pattern = re.compile(r'^(?:[a-zA-Z0-9]' r'(?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)*' r'[a-zA-Z]{2,}$')
     return bool(pattern.match(domain))
 
 

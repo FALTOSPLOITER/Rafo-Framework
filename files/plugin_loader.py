@@ -15,9 +15,9 @@ Each plugin is a .py file that exposes:
 Example plugin file: plugins/mytools.py
 """
 
-import os
 import importlib.util
-import sys
+import os
+
 from colorama import Fore, Style
 
 _PLUGINS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'plugins')
@@ -58,11 +58,7 @@ def discover_plugins():
 def register_plugins(parser, plugins):
     """Add each plugin's arguments to an argparse parser."""
     for plugin in plugins:
-        parser.add_argument(
-            f'-{plugin.COMMAND}',
-            action='store_true',
-            help=f'[plugin] {plugin.DESCRIPTION}'
-        )
+        parser.add_argument(f'-{plugin.COMMAND}', action='store_true', help=f'[plugin] {plugin.DESCRIPTION}')
         for arg_spec in plugin.ARGS:
             flags = arg_spec.pop('flags')
             parser.add_argument(*flags, **arg_spec)

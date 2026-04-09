@@ -21,7 +21,6 @@ import sqlite3
 import os
 import datetime
 
-
 _DB_PATH = os.path.join(os.path.expanduser('~'), '.rafo', 'results.db')
 
 
@@ -76,10 +75,7 @@ class RafoDB:
     def add_target(self, host):
         now = datetime.datetime.utcnow().isoformat()
         c = self.conn.cursor()
-        c.execute(
-            'INSERT OR IGNORE INTO targets (host, first_seen, last_seen) VALUES (?, ?, ?)',
-            (host, now, now)
-        )
+        c.execute('INSERT OR IGNORE INTO targets (host, first_seen, last_seen) VALUES (?, ?, ?)', (host, now, now))
         c.execute('UPDATE targets SET last_seen = ? WHERE host = ?', (now, host))
         self.conn.commit()
 
@@ -91,7 +87,7 @@ class RafoDB:
         c = self.conn.cursor()
         c.execute(
             'INSERT INTO scan_results (host, port, protocol, state, service, scanned_at) VALUES (?, ?, ?, ?, ?, ?)',
-            (host, port, protocol, state, service, now)
+            (host, port, protocol, state, service, now),
         )
         self.conn.commit()
 
@@ -103,7 +99,7 @@ class RafoDB:
         c = self.conn.cursor()
         c.execute(
             'INSERT INTO recon_results (host, task, key, value, recorded_at) VALUES (?, ?, ?, ?, ?)',
-            (host, task, key, str(value), now)
+            (host, task, key, str(value), now),
         )
         self.conn.commit()
 
@@ -114,7 +110,7 @@ class RafoDB:
         c = self.conn.cursor()
         c.execute(
             'INSERT OR IGNORE INTO sessions (session_id, target, started_at) VALUES (?, ?, ?)',
-            (session_id, target, now)
+            (session_id, target, now),
         )
         self.conn.commit()
 
@@ -133,20 +129,17 @@ class RafoDB:
     def get_scan_results(self, host):
         c = self.conn.cursor()
         return c.execute(
-            'SELECT port, protocol, state, service, scanned_at FROM scan_results WHERE host = ? ORDER BY port',
-            (host,)
+            'SELECT port, protocol, state, service, scanned_at FROM scan_results WHERE host = ? ORDER BY port', (host,)
         ).fetchall()
 
     def get_recon(self, host, task=None):
         c = self.conn.cursor()
         if task:
             return c.execute(
-                'SELECT key, value, recorded_at FROM recon_results WHERE host = ? AND task = ?',
-                (host, task)
+                'SELECT key, value, recorded_at FROM recon_results WHERE host = ? AND task = ?', (host, task)
             ).fetchall()
         return c.execute(
-            'SELECT task, key, value, recorded_at FROM recon_results WHERE host = ? ORDER BY recorded_at',
-            (host,)
+            'SELECT task, key, value, recorded_at FROM recon_results WHERE host = ? ORDER BY recorded_at', (host,)
         ).fetchall()
 
     def close(self):

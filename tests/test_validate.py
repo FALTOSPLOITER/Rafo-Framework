@@ -2,11 +2,17 @@
 
 import sys
 import os
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 from files.validate import (
-    validate_ip, validate_cidr, validate_domain,
-    validate_host, validate_port, validate_port_range, validate_mac
+    validate_ip,
+    validate_cidr,
+    validate_domain,
+    validate_host,
+    validate_port,
+    validate_port_range,
+    validate_mac,
 )
 
 

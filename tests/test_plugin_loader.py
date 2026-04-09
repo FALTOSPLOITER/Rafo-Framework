@@ -1,8 +1,8 @@
 """Unit tests for files/plugin_loader.py"""
 
-import sys
 import os
-import types
+import sys
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 
@@ -10,6 +10,7 @@ class TestDiscoverPlugins:
     def test_discover_returns_list(self, tmp_path, monkeypatch):
         """discover_plugins() returns a list (empty or populated)."""
         import files.plugin_loader as pl
+
         monkeypatch.setattr(pl, '_PLUGINS_DIR', str(tmp_path))
         result = pl.discover_plugins()
         assert isinstance(result, list)
@@ -24,6 +25,7 @@ def run(args): pass
 '''
         (tmp_path / 'myplugin.py').write_text(plugin_src)
         import files.plugin_loader as pl
+
         monkeypatch.setattr(pl, '_PLUGINS_DIR', str(tmp_path))
         plugins = pl.discover_plugins()
         assert len(plugins) == 1
@@ -33,6 +35,7 @@ def run(args): pass
         """A plugin missing required attributes is skipped without crashing."""
         (tmp_path / 'bad.py').write_text('COMMAND = "bad"\n')
         import files.plugin_loader as pl
+
         monkeypatch.setattr(pl, '_PLUGINS_DIR', str(tmp_path))
         plugins = pl.discover_plugins()
         assert plugins == []
@@ -41,5 +44,6 @@ def run(args): pass
         """Files starting with _ are not loaded as plugins."""
         (tmp_path / '__init__.py').write_text('')
         import files.plugin_loader as pl
+
         monkeypatch.setattr(pl, '_PLUGINS_DIR', str(tmp_path))
         assert pl.discover_plugins() == []
