@@ -15,7 +15,7 @@ def autoscan(target):
         ns(target, IPINFO_API_KEY)
         whoisinfo(target)
         # save open ports on array for later banner grabbing
-        open_ports = scan(target)
+        scan(target, False, 1, 1000, '-sT')
         vulnscan(target, SHODAN_API_KEY)
         sdenum(target, SUBDOMAINS_WORDLIST)
         dirbust(target, DIRECTORIES_WORDLIST)

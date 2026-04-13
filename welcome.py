@@ -26,10 +26,10 @@ def intro1():
 
 def welcome():
     introList = [intro1]
-    subprocess.call(['clear'])
+    subprocess.run(['clear'])
     random.choice(introList)()
     time.sleep(2.5)
-    subprocess.call(['clear'])
+    subprocess.run(['clear'])
 
 # Call the welcome function to display the introduction
 welcome()

@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "claude/**"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  lint:
+    name: Lint (flake8 + black)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install lint tools
+        run: pip install flake8 black colorama
+      - name: Run flake8 (new/rewritten files only)
+        run: |
+          flake8 tests/ files/ plugins/ tasks/save.py tasks/session.py \
+            --max-line-length=120 \
+            --extend-ignore=E402,W503
+      - name: Check black formatting (new/rewritten files only)
+        run: |
+          black --check --line-length 120 \
+            tests/ files/ plugins/ tasks/save.py tasks/session.py
+
+  security:
+    name: Security audit (bandit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install bandit
+        run: pip install bandit
+      - name: Run bandit on utility code
+        # Offense modules are a pentest tool — subprocess/os.system usage is
+        # intentional. We audit only the new utility/infrastructure code.
+        run: |
+          bandit -r files/ tests/ tasks/save.py tasks/session.py plugins/ \
+            -ll --skip B101
+
+  test:
+    name: Tests (pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          pip install colorama requests pytest pytest-mock
+      - name: Run tests
+        run: pytest tests/ -v --tb=short

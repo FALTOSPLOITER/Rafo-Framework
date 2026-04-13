@@ -29,11 +29,11 @@ def modify_packet(packet, dns_mapping_records):
     # get the DNS question name, the domain name
     qname = packet[DNSQR].qname
 
-    if qname not in dns_hosts:
+    if qname not in dns_mapping_records:
         print(f'[+] No modification: {qname}')
         return packet
-    
-    packet[DNS].an = DNSRR(rrname=qname, rdata=dns_hosts[qname])
+
+    packet[DNS].an = DNSRR(rrname=qname, rdata=dns_mapping_records[qname])
     packet[DNS].ancount = 1
 
     del packet[IP].len
